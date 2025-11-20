@@ -1,0 +1,15 @@
+{
+  "name": "https-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  },
+
+  "dependencies": {
+    "@repo/typescript-config":"*"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
