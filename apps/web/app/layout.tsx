@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { AppSidebar } from "@/components/ui/app-sidebar";
+import { ThemeProvider } from "@/components/theme-provider"
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-});
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+
+
+
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -22,9 +21,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+          <html lang="en" suppressHydrationWarning>
+
+      <body>
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="flex-1 w-full">
+            <SidebarTrigger />
+            <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            </ThemeProvider>
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );
