@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { AppSidebar } from "@/components/ui/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider"
-
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-
-
-
-
+import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider, SidebarInset, SidebarTrigger } from "@/components/ui/sidebar"
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,23 +16,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-          <html lang="en" suppressHydrationWarning>
-
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="flex-1 w-full">
-            <SidebarTrigger />
-            <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {children}
-            </ThemeProvider>
-          </main>
-        </SidebarProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SidebarProvider>
+            <AppSidebar />
+            <SidebarInset>
+              <header className="flex h-16 shrink-0 items-center gap-2 px-4">
+                <SidebarTrigger className="-ml-1" />
+              </header>
+              <main className="flex-1 p-4">
+                {children}
+              </main>
+            </SidebarInset>
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
