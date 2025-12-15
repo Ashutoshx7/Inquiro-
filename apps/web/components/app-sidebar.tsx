@@ -8,6 +8,7 @@ import {
   Code,
   Users,
 } from "lucide-react"
+import ModeToggle from "@/components/theme-toggle";
 
 import { NavMain } from "@/components/nav-main"
 import { NavRecent } from "@/components/nav-recent"
@@ -69,8 +70,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavMain items={data.navMain} />
         <NavRecent items={data.recent} />
       </SidebarContent>
+      <div className="flex justify-end">
+       <ModeToggle  />
+       </div>
       <SidebarFooter>
         <NavUser user={data.user} />
+       
       </SidebarFooter>
     </Sidebar>
   )
